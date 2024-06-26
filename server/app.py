@@ -23,15 +23,17 @@ def clear_session():
 # Define the route for listing all articles
 @app.route('/articles')
 def index_articles():
+    
     # Query all articles and convert them to dictionaries
-
     articles = [article.to_dict() for article in Article.query.all()]
     #Return a JSON response with the list of articles
     return make_response(jsonify(articles), 200)
 
+
 # Define teh route for showing a single article
 @app.route('/articles/<int:id>', methods=['GET'])
 def show_article(id):
+    
     # Get 'page_views' from session, default to 0 if not set
     # Use a ternary-like operation to initialize 'page_views' in session if not already set
     session['page_views'] = session.get('page_views') or 0
